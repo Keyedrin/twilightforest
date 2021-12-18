@@ -1,5 +1,6 @@
 package twilightforest.entity;
 
+import com.dunk.tfc.ItemSetup;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -13,6 +14,7 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import twilightforest.TFAchievementPage;
@@ -46,6 +48,7 @@ public class EntityTFKobold extends EntityMob {
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 
+        this.setCurrentItemOrArmor(0, new ItemStack(ItemSetup.stoneKnife));
     }
     
     public EntityTFKobold(World world, double x, double y, double z)
@@ -77,9 +80,9 @@ public class EntityTFKobold extends EntityMob {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(13.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(650.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D); // movement speed
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D); // attack damage
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(20.0D); // attack damage
     }
     
 
@@ -105,7 +108,7 @@ public class EntityTFKobold extends EntityMob {
     @Override
 	protected Item getDropItem()
     {
-        return Items.wheat;
+        return ItemSetup.straw;
     }
     
     @Override
@@ -115,7 +118,7 @@ public class EntityTFKobold extends EntityMob {
     	
         if (rand.nextInt(2) == 0)
         {
-            this.dropItem(Items.gold_nugget, 1 + i);
+            this.dropItem(ItemSetup.wheatWhole, 1 + i);
         }
     }
  

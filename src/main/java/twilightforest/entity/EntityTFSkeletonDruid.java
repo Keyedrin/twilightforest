@@ -1,6 +1,11 @@
 
 package twilightforest.entity;
 
+import com.dunk.tfc.BlockSetup;
+import com.dunk.tfc.Blocks.Flora.BlockFlower;
+import com.dunk.tfc.ItemSetup;
+import com.dunk.tfc.api.Constant.Global;
+import com.dunk.tfc.api.Interfaces.IInnateArmor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -29,7 +34,7 @@ import twilightforest.item.TFItems;
 
 
 
-public class EntityTFSkeletonDruid extends EntityMob implements IRangedAttackMob
+public class EntityTFSkeletonDruid extends EntityMob implements IRangedAttackMob, IInnateArmor
 {
 
 	public EntityTFSkeletonDruid(World world)
@@ -48,9 +53,11 @@ public class EntityTFSkeletonDruid extends EntityMob implements IRangedAttackMob
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
 		
-        this.setCurrentItemOrArmor(0, new ItemStack(Items.golden_hoe));
+        this.setCurrentItemOrArmor(0, new ItemStack(ItemSetup.woodenStaff));
 
 	}
+
+	//TODO add random fur/cloth clothing
 
 	/**
 	 * Returns true if the newer Entity AI code should be run
@@ -68,7 +75,7 @@ public class EntityTFSkeletonDruid extends EntityMob implements IRangedAttackMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(2000.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D); // movement speed
     }
 
@@ -107,7 +114,7 @@ public class EntityTFSkeletonDruid extends EntityMob implements IRangedAttackMob
     @Override
 	protected Item getDropItem()
     {
-        return TFItems.torchberries;
+        return ItemSetup.bone;
     }
     
     /**
@@ -120,17 +127,48 @@ public class EntityTFSkeletonDruid extends EntityMob implements IRangedAttackMob
     	int i;
 
     	numberOfItemsToDrop = this.rand.nextInt(3 + lootingModifier);
-
-    	for (i = 0; i < numberOfItemsToDrop; ++i)
-    	{
-    		this.dropItem(TFItems.torchberries, 1);
-    	}
+// drop either fruit saplings, berry bushes, regular saplings, or flowers.
+		//		1/20			1/20			1/10				else
+    	switch(rand.nextInt(20)){
+			case 0:
+    			this.entityDropItem(new ItemStack(ItemSetup.fruitTreeSapling, 1, rand.nextInt(Global.FRUIT_META_NAMES.length)), 0.0F);
+				break;
+			case 1:
+				this.entityDropItem(new ItemStack(BlockSetup.berryBush, 1, rand.nextInt(10)), 0.0F);
+				break;
+			case 2:
+				switch (rand.nextInt(3)) {
+					case 0:
+						this.entityDropItem(new ItemStack(BlockSetup.sapling, 1, rand.nextInt(16)), 0.0F);
+					case 1:
+						this.entityDropItem(new ItemStack(BlockSetup.sapling2, 1, rand.nextInt(16)), 0.0F);
+					case 2:
+						this.entityDropItem(new ItemStack(BlockSetup.sapling3, 1, 0), 0.0F);
+						break;
+				}
+				break;
+			case 3:
+				switch (rand.nextInt(3)){
+					case 0:
+						this.entityDropItem(new ItemStack(BlockSetup.sapling, 1, rand.nextInt(16)), 0.0F);
+					case 1:
+						this.entityDropItem(new ItemStack(BlockSetup.sapling2, 1, rand.nextInt(16)), 0.0F);
+					case 2:
+						this.entityDropItem(new ItemStack(BlockSetup.sapling3, 1, 0), 0.0F);
+				}
+				break;
+			default:
+				if (rand.nextInt(2) == 0){
+					this.entityDropItem(new ItemStack(BlockSetup.flowers, rand.nextInt(2)+1, rand.nextInt(6)), 0.0F);
+				}
+				else this.entityDropItem(new ItemStack(BlockSetup.flowers2, rand.nextInt(2)+1, rand.nextInt(9)), 0.0F);
+		}
 
     	numberOfItemsToDrop = this.rand.nextInt(3 + lootingModifier);
 
     	for (i = 0; i < numberOfItemsToDrop; ++i)
     	{
-    		this.dropItem(Items.bone, 1);
+    		this.dropItem(ItemSetup.bone, 1);
     	}
     }
     
@@ -196,4 +234,19 @@ public class EntityTFSkeletonDruid extends EntityMob implements IRangedAttackMob
         }
     	return valid;
     }
+
+	@Override
+	public int getCrushArmor() {
+		return -335;
+	}
+
+	@Override
+	public int getSlashArmor() {
+		return 1000;
+	}
+
+	@Override
+	public int getPierceArmor() {
+		return 500000;
+	}
 }

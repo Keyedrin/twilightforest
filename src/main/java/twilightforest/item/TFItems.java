@@ -1,11 +1,15 @@
 package twilightforest.item;
 
+import com.dunk.tfc.Items.Tools.ItemCustomAxe;
+import com.dunk.tfc.api.TFCItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.common.util.EnumHelper;
 import twilightforest.TwilightForestMod;
 import cpw.mods.fml.common.registry.GameRegistry;
+
+import static com.dunk.tfc.api.TFCItems.blackSteelToolMaterial;
 
 public class TFItems {
 
@@ -202,7 +206,7 @@ public class TFItems {
     	steeleafPick = new ItemTFSteeleafPick(TOOL_STEELEAF).setUnlocalizedName("steeleafPick").setMaxStackSize(1);
     	steeleafAxe = new ItemTFSteeleafAxe(TOOL_STEELEAF).setUnlocalizedName("steeleafAxe").setMaxStackSize(1);
     	steeleafHoe = new ItemTFSteeleafHoe(TOOL_STEELEAF).setUnlocalizedName("steeleafHoe").setMaxStackSize(1);
-    	minotaurAxe = new ItemTFMinotaurAxe(Item.ToolMaterial.EMERALD).setUnlocalizedName("minotaurAxe").setMaxStackSize(1);
+    	minotaurAxe = (new ItemCustomAxe(blackSteelToolMaterial, blackSteelToolMaterial.getDamageVsEntity())).setUnlocalizedName("minotaurAxe").setMaxStackSize(1);
     	mazebreakerPick = new ItemTFMazebreakerPick(Item.ToolMaterial.EMERALD).setUnlocalizedName("mazebreakerPick").setMaxStackSize(1);
     	transformPowder = new ItemTFTransformPowder().makeRare().setUnlocalizedName("transformPowder");
     	meefRaw = (new ItemTFFood(2, 0.3F, true)).setUnlocalizedName("meefRaw");

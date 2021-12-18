@@ -58,7 +58,7 @@ public class EntityTFDeathTome extends EntityMob {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1500.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D); // movement speed
     }
 
@@ -135,7 +135,7 @@ public class EntityTFDeathTome extends EntityMob {
     @Override
 	protected void dropRareDrop(int par1)
     {
-        this.dropItem(TFItems.magicMapFocus, 1);
+        this.dropItem(Items.map, 1);
     }
 	
 

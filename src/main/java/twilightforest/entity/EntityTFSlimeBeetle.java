@@ -60,7 +60,7 @@ public class EntityTFSlimeBeetle extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(25.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1250.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23D); // movement speed
     }
 

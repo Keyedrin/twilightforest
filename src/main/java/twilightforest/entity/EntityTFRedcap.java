@@ -1,5 +1,6 @@
 package twilightforest.entity;
 
+import com.dunk.tfc.ItemSetup;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -30,9 +31,9 @@ import twilightforest.entity.ai.EntityAITFRedcapShy;
 public class EntityTFRedcap extends EntityMob {
 	
 
-    public static ItemStack heldPick = new ItemStack(Items.iron_pickaxe, 1);
+    public static ItemStack heldPick = new ItemStack(ItemSetup.copperPick, 1);
     public static ItemStack heldTNT = new ItemStack(Blocks.tnt, 1);
-    public static ItemStack heldFlint = new ItemStack(Items.flint_and_steel, 1);
+    public static ItemStack heldFlint = new ItemStack(ItemSetup.flintSteel, 1);
     
 	private boolean shy;
 	
@@ -59,7 +60,7 @@ public class EntityTFRedcap extends EntityMob {
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, true));
         
         this.setCurrentItemOrArmor(0, heldPick);
-        this.setCurrentItemOrArmor(1, new ItemStack(Items.iron_boots));
+        this.setCurrentItemOrArmor(1, new ItemStack(ItemSetup.bearFurBoots));
         
         this.equipmentDropChances[0] = 0.2F;
         this.equipmentDropChances[1] = 0.2F;
@@ -88,7 +89,7 @@ public class EntityTFRedcap extends EntityMob {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10000.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D); // movement speed
     }
 

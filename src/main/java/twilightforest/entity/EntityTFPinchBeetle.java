@@ -1,5 +1,6 @@
 package twilightforest.entity;
 
+import com.dunk.tfc.api.Interfaces.IInnateArmor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -21,7 +22,7 @@ import twilightforest.entity.ai.EntityAITFKidnapRider;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class EntityTFPinchBeetle extends EntityMob
+public class EntityTFPinchBeetle extends EntityMob implements IInnateArmor
 {
 	public EntityTFPinchBeetle(World world) {
 		super(world);
@@ -57,9 +58,9 @@ public class EntityTFPinchBeetle extends EntityMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(2000.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.23D); // movement speed
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D); // attack damage
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(200.0D); // attack damage
     }
 
     /**
@@ -77,7 +78,22 @@ public class EntityTFPinchBeetle extends EntityMob
 
         return var1;
     }
-	
+
+    @Override
+    public int getCrushArmor() {
+        return 0;
+    }
+
+    @Override
+    public int getSlashArmor() {
+        return 400;
+    }
+
+    @Override
+    public int getPierceArmor() {
+        return 0;
+    }
+
     /**
      * Returns the sound this mob makes while it's alive.
      */

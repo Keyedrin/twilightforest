@@ -72,7 +72,7 @@ public class EntityTFNatureBolt extends EntityThrowable {
 		// only damage living things
 		if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase)
 		{
-			if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.getThrower()), 2))
+			if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeIndirectMagicDamage(this, this.getThrower()), 100))
 			{
 				// similar to EntityCaveSpider
 				byte poisonStrength = (byte) (worldObj.difficultySetting == EnumDifficulty.PEACEFUL ? 0 : worldObj.difficultySetting == EnumDifficulty.NORMAL ? 3 : 7);
@@ -106,11 +106,13 @@ public class EntityTFNatureBolt extends EntityThrowable {
 				if (materialHit == Material.grass && this.playerTarget != null) 
 				{
 					Items.dye.onItemUse(new ItemStack(Items.dye, 1, 15), playerTarget, worldObj, dx, dy, dz, 0, 0, 0, 0);
-				}			
-				else if (materialHit.isSolid() && canReplaceBlock(worldObj, dx, dy, dz)) 
+				}
+				//TODO add moss to blockface instead
+
+				/* else if (materialHit.isSolid() && canReplaceBlock(worldObj, dx, dy, dz))
 				{
 					worldObj.setBlock(dx, dy, dz, Blocks.leaves, 2, 3);
-				}			
+				}	*/
 			}
 		}
 

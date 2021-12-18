@@ -2,6 +2,7 @@ package twilightforest.entity;
 
 import java.util.List;
 
+import com.dunk.tfc.api.Interfaces.IInnateArmor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IEntityMultiPart;
@@ -27,7 +28,7 @@ import twilightforest.TwilightForestMod;
 import twilightforest.item.TFItems;
 
 
-public class EntityTFBlockGoblin extends EntityMob implements IEntityMultiPart {
+public class EntityTFBlockGoblin extends EntityMob implements IEntityMultiPart, IInnateArmor {
 	
 
  
@@ -96,11 +97,12 @@ public class EntityTFBlockGoblin extends EntityMob implements IEntityMultiPart {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1000.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D); // movement speed
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(8.0D); // attack damage
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(400.0D); // attack damage
     }
-    
+
+
 
     @Override
 	protected String getLivingSound()
@@ -372,8 +374,18 @@ public class EntityTFBlockGoblin extends EntityMob implements IEntityMultiPart {
         return i;
     }
 
-    
-    
-    
+    @Override
+    public int getCrushArmor() {
+        return 100;
+    }
 
+    @Override
+    public int getSlashArmor() {
+        return 0;
+    }
+
+    @Override
+    public int getPierceArmor() {
+        return 0;
+    }
 }

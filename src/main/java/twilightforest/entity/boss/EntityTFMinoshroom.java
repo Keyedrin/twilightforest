@@ -1,5 +1,6 @@
 package twilightforest.entity.boss;
 
+import com.dunk.tfc.ItemSetup;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ public class EntityTFMinoshroom extends EntityTFMinotaur {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(120.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(6000.0D); // max health
     }
 
     /**

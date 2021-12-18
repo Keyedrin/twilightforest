@@ -1,5 +1,7 @@
 package twilightforest.entity;
 
+import com.dunk.tfc.ItemSetup;
+import com.dunk.tfc.api.Interfaces.IInnateArmor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,7 +23,7 @@ import twilightforest.TFAchievementPage;
 import twilightforest.entity.ai.EntityAITFChargeAttack;
 import twilightforest.item.TFItems;
 
-public class EntityTFMinotaur extends EntityMob implements ITFCharger {
+public class EntityTFMinotaur extends EntityMob implements ITFCharger, IInnateArmor {
 	
 	public EntityTFMinotaur(World par1World) {
 		super(par1World);
@@ -37,23 +39,36 @@ public class EntityTFMinotaur extends EntityMob implements ITFCharger {
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(2, new EntityAINearestAttackableTarget(this, EntityPlayer.class, 0, false));
 
-        this.setCurrentItemOrArmor(0, new ItemStack(Items.golden_axe));
+        this.setCurrentItemOrArmor(0, new ItemStack(ItemSetup.blackBronzeAxe));
 	}
 
 	/**
 	 * Set monster attributes
 	 */
+	//TODO Possibly buff health. Damage tears through bronze armor with no issues but dies in only a few hits.
 	@Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1500.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.25D); // movement speed
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(7.0D); // attack damage
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(350.0D); // attack damage
     }
-    
 
+    @Override
+    public int getCrushArmor() {
+        return 200;
+    }
 
+    @Override
+    public int getSlashArmor() {
+        return 200;
+    }
+
+    @Override
+    public int getPierceArmor() {
+        return 0;
+    }
 
 	@Override
     protected void entityInit()
@@ -221,5 +236,4 @@ public class EntityTFMinotaur extends EntityMob implements ITFCharger {
     		((EntityPlayer)par1DamageSource.getSourceOfDamage()).triggerAchievement(TFAchievementPage.twilightHunter);
     	}
     }
-
 }

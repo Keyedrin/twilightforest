@@ -102,7 +102,7 @@ public class EntityTFChainBlock extends EntityThrowable implements IEntityMultiP
 	protected void onImpact(MovingObjectPosition mop) {
 		// only hit living things
         if (mop.entityHit != null && mop.entityHit instanceof EntityLivingBase && mop.entityHit != this.getThrower()) {
-            if (mop.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) this.getThrower()), 10)) {
+            if (mop.entityHit.attackEntityFrom(DamageSource.causePlayerDamage((EntityPlayer) this.getThrower()), 500)) {
             	// age when we hit a monster so that we go back to the player faster
                 this.ticksExisted += 60;
             }

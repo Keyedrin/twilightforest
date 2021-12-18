@@ -67,7 +67,7 @@ public class EntityTFSlimeProjectile extends EntityThrowable {
 		// only damage living things
 		if (par1MovingObjectPosition.entityHit != null && par1MovingObjectPosition.entityHit instanceof EntityLivingBase)
 		{
-			if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 8))
+			if (par1MovingObjectPosition.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower()), 200))
 			{
 				// damage armor?
 				//TODO:

@@ -1,5 +1,6 @@
 package twilightforest.entity;
 
+import com.dunk.tfc.Entities.Mobs.EntityWolfTFC;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.IMob;
@@ -15,7 +16,7 @@ import twilightforest.TFAchievementPage;
 import twilightforest.TFFeature;
 
 
-public class EntityTFHostileWolf extends EntityWolf implements IMob {
+public class EntityTFHostileWolf extends EntityWolfTFC implements IMob {
 
 	public EntityTFHostileWolf(World world) {
 		super(world);
@@ -38,7 +39,7 @@ public class EntityTFHostileWolf extends EntityWolf implements IMob {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(10.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(2000.0D); // max health
     }
 
     @Override

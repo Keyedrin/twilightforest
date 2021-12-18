@@ -1,5 +1,6 @@
 package twilightforest.entity;
 
+import com.dunk.tfc.ItemSetup;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -23,8 +24,8 @@ public class EntityTFRedcapSapper extends EntityTFRedcap {
         
         this.setTntLeft(3);
 
-        this.setCurrentItemOrArmor(1, new ItemStack(TFItems.ironwoodBoots));
-        this.setCurrentItemOrArmor(0, new ItemStack(TFItems.ironwoodPick, 1));
+        this.setCurrentItemOrArmor(1, new ItemStack(ItemSetup.wroughtIronBoots));
+        this.setCurrentItemOrArmor(0, new ItemStack(ItemSetup.wroughtIronPick, 1));
 	}
 	
 	/**
@@ -34,7 +35,7 @@ public class EntityTFRedcapSapper extends EntityTFRedcap {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(30.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1500.0D); // max health
     }
 
     /**
@@ -57,7 +58,7 @@ public class EntityTFRedcapSapper extends EntityTFRedcap {
 	@Override
 	public ItemStack getPick()
 	{
-		return new ItemStack(TFItems.ironwoodPick);
+		return new ItemStack(ItemSetup.wroughtIronPick);
 	}
 
     /**
