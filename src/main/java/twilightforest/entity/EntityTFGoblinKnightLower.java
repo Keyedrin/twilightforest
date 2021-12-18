@@ -1,5 +1,7 @@
 package twilightforest.entity;
 
+import com.dunk.tfc.ItemSetup;
+import com.dunk.tfc.api.Interfaces.IInnateArmor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.IEntityLivingData;
@@ -23,7 +25,7 @@ import net.minecraft.world.World;
 import twilightforest.entity.ai.EntityAITFRiderSpearAttack;
 import twilightforest.item.TFItems;
 
-public class EntityTFGoblinKnightLower extends EntityMob {
+public class EntityTFGoblinKnightLower extends EntityMob implements IInnateArmor {
 	
 	private static final int DATA_EQUIP = 17;
 
@@ -53,9 +55,9 @@ public class EntityTFGoblinKnightLower extends EntityMob {
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(20.0D); // max health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(1500.0D); // max health
         this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(0.28D); // movement speed
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0D); // attack damage
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(200.0D); // attack damage
     }
 	
     /**
@@ -254,8 +256,8 @@ public class EntityTFGoblinKnightLower extends EntityMob {
 		this.renderBrokenItemStack(new ItemStack(Items.iron_chestplate));
 		this.renderBrokenItemStack(new ItemStack(Items.iron_chestplate));
 		this.renderBrokenItemStack(new ItemStack(Items.iron_chestplate));
-		
 		this.setHasArmor(false);
+		this.entityDropItem(new ItemStack(TFItems.armorShard), 0.0F);
 	}
 	
     /**
@@ -277,14 +279,36 @@ public class EntityTFGoblinKnightLower extends EntityMob {
 
         return armor;
     }
+    //Provide protection like a full Bronze suit of armor until broken.
+    @Override
+    public int getCrushArmor() {
+        if (this.hasArmor()) {
+            return 1320;
+        }
+        return 0;
+    }
 
-    
+    @Override
+    public int getSlashArmor() {
+        if (this.hasArmor()) {
+            return 2000;
+        }
+        return 0;
+    }
+
+    @Override
+    public int getPierceArmor() {
+        if (this.hasArmor()) {
+            return 2000;
+        }
+        return 0;
+    }
+
     /**
      * Returns the item ID for the item the mob drops on death.
      */
-    protected Item getDropItemId()
+    protected Item dropItem()
     {
         return TFItems.armorShard;
     }
-    
 }
